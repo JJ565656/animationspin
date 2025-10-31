@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Merging Pattern Morph</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: radial-gradient(circle at center, #0a0a0a 25%, #000);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .pattern {
+      position: relative;
+      width: 600px;
+      height: 600px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: rotate 18s linear infinite;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .tile {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(145deg, #5e60ce, #64dfdf);
+      border-radius: 16px;
+      opacity: 0.9;
+      transform-origin: center;
+      animation: mergePattern 8s ease-in-out infinite;
+      box-shadow: 0 0 25px rgba(100, 255, 255, 0.3);
+    }
+
+    .tile:nth-child(1) { transform: rotate(0deg) translateY(220px); }
+    .tile:nth-child(2) { transform: rotate(45deg) translateY(220px); }
+    .tile:nth-child(3) { transform: rotate(90deg) translateY(220px); }
+    .tile:nth-child(4) { transform: rotate(135deg) translateY(220px); }
+    .tile:nth-child(5) { transform: rotate(180deg) translateY(220px); }
+    .tile:nth-child(6) { transform: rotate(225deg) translateY(220px); }
+    .tile:nth-child(7) { transform: rotate(270deg) translateY(220px); }
+    .tile:nth-child(8) { transform: rotate(315deg) translateY(220px); }
+
+    @keyframes mergePattern {
+      0%, 100% {
+        transform: rotate(var(--angle)) translateY(220px) scale(1);
+        border-radius: 16px;
+        background: linear-gradient(145deg, #5e60ce, #64dfdf);
+      }
+      40% {
+        transform: rotate(var(--angle)) translateY(100px) scale(1.1);
+        border-radius: 40%;
+        background: linear-gradient(145deg, #56cfe1, #80ffdb);
+      }
+      50% {
+        transform: rotate(var(--angle)) translateY(0px) scale(0.8);
+        border-radius: 50%;
+        background: linear-gradient(145deg, #72efdd, #56cfe1);
+      }
+      60% {
+        transform: rotate(var(--angle)) translateY(100px) scale(1.1);
+        border-radius: 40%;
+        background: linear-gradient(145deg, #5e60ce, #64dfdf);
+      }
+    }
+
+    .glow {
+      position: absolute;
+      width: 900px;
+      height: 900px;
+      background: radial-gradient(circle, rgba(128,255,255,0.15), transparent 70%);
+      border-radius: 50%;
+      animation: pulseGlow 8s ease-in-out infinite;
+      mix-blend-mode: screen;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); opacity: 0.3; }
+      50% { transform: scale(1.2); opacity: 0.6; }
+    }
+  </style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="pattern">
+    <div class="tile" style="--angle: 0deg"></div>
+    <div class="tile" style="--angle: 45deg"></div>
+    <div class="tile" style="--angle: 90deg"></div>
+    <div class="tile" style="--angle: 135deg"></div>
+    <div class="tile" style="--angle: 180deg"></div>
+    <div class="tile" style="--angle: 225deg"></div>
+    <div class="tile" style="--angle: 270deg"></div>
+    <div class="tile" style="--angle: 315deg"></div>
+  </div>
+</body>
+</html>
